@@ -13,12 +13,12 @@ jobs:
       - name: Create comment with API
         run: |
             gh api -X POST \
-              repos/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+              repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
               -f body='Me too' 
             
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORGANIZATION: ${{ github.event.organization.login }}
+          ORGANIZATION: ${{ github.event.user.login }}
           REPOSITORY: ${{ github.event.repository.name }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
