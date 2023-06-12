@@ -6,7 +6,15 @@ on:
 env:
    GH_TOKEN: ${{ github.token }}
    
-jobs:          
+jobs:   
+
+  print-event:
+   runs-on: ununtu-latest
+   steps:
+    - name: prints the event
+      run: echo '${{ toJSON(github.event) }}' | jq
+      shell: bash
+      
   comment-with-api:
     runs-on: ubuntu-latest
     steps:
