@@ -5,6 +5,22 @@ on:
     types: [opened]
 
 jobs:
+  comment-with-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create comment with API
+        run: |
+          gh api -X POST \
+            http://api.github.com/repo/${ORGANIAZATION}/${REPOSITORY}/issues/{ISSUE_NUMBER}/comments \
+            -f body='
+            Comment but from API call not action
+            '
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ORGANIZATION: ${{ github.event.organization.login }}
+            REPOSITORY: ${{ github.event.repository.name }}
+            ISSUE_NUMBER: ${{ github.event.issuse.number }}
+  
   comment-with-action:
     runs-on: ubuntu-latest
     steps:
@@ -22,3 +38,5 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
+          
+ 
