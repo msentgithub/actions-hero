@@ -16,7 +16,7 @@ jobs:
             Comment but from API call not action
             '
           env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN: ${{ github.token }}
             ORGANIZATION: ${{ github.event.organization.login }}
             REPOSITORY: ${{ github.event.repository.name }}
             ISSUE_NUMBER: ${{ github.event.issuse.number }}
